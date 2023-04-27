@@ -29,12 +29,12 @@ const create=async(req,res)=>{
 }
 
 
-const signup=async(req,res)=>{
+const signIn=async(req,res)=>{
     try {
-        const user=await UserRepository.getById(req.id);
-        const response=await UserService.createToken(user);
+       
+        const response=await userService.signIn(req.body.email,req.body.password);
         return res.status(201).json({
-            message:'Sucessfully signup the user ',
+            message:'Sucessfully signup the user',
             data:response,
             err:{},
             success:true
@@ -52,5 +52,5 @@ const signup=async(req,res)=>{
 }
 module.exports={
     create,
-    signup
+    signIn
 }
